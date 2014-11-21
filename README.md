@@ -9,7 +9,7 @@ Deploy in $HOME by runnning:
 
 or
 
-    curl -Lks | http://bit.do/deploycfg | bash
+    curl -Lks http://bit.do/deploycfg | bash
 
 
 Simplified version of Nicola Paolucci's [cfg repo](https://github.com/durdn/cfg).
