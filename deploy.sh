@@ -92,9 +92,9 @@ fi
 if [ ! -e $dircfg ];
   then
       curl -LsO ${giturl}
-      tar zxvf master.tar.gz
+      tar zxf master.tar.gz
       mv cfg-master/dotfiles ${deploy_dir}
-      rm cfg-master.tar.gz
+      rm master.tar.gz
   else
     echo "Config already deployed in $dircfg"
 fi
