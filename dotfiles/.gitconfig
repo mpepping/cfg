@@ -1,0 +1,21 @@
+[core]
+
+[user]
+	name = Martijn Pepping
+	email = martijn@xbsd.nl
+	
+[github]
+	user = mpepping
+
+[color]
+	diff = auto
+	status = auto
+	branch = auto
+	interactive = true
+
+[alias]
+	hist = log --graph --date=short
+	histone = log --graph --decorate --abbrev-commit --all --pretty=oneline
+
+[http]
+	sslVerify = false
