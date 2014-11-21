@@ -99,5 +99,5 @@ if [ ! -e $dircfg ];
     echo "Config already deployed in $dircfg"
 fi
 
-assets=$(ls -A1 $dircfg | egrep -v $ignored | xargs);
+assets=$(ls -A1 $dircfg | egrep -v $ignore | xargs);
 deploy_assets
