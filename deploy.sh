@@ -33,8 +33,8 @@ deploy_assets() {
         #asset does not exist, can just copy it
         echo "N [new] $home/$asset";
         if [ $debug = false ];
-          then ln -s $cfg_folder/$asset $home/$asset;
-          else echo ln -s $cfg_folder/$asset $home/$asset;
+          then ln -s $dircfg/$asset $home/$asset;
+          else echo ln -s $dircfg/$asset $home/$asset;
         fi
       else
         #asset is there already
@@ -45,11 +45,11 @@ deploy_assets() {
               else
                 echo "Cd[conflict dir] $home/$asset";
                 mv $home/$asset $backup_folder/$asset;
-                ln -s $cfg_folder/$asset $home/$asset;
+                ln -s $dircfg/$asset $home/$asset;
             fi
           else
             ha=$(md5prog $home/$asset);
-            ca=$(md5prog $cfg_folder/$asset);
+            ca=$(md5prog $dircfg/$asset);
             if [ $ha = $ca ];
               #asset is exactly the same
               then
@@ -62,10 +62,10 @@ deploy_assets() {
                     if [ $debug = false ];
                       then
                         mv $home/$asset $backup_folder/$asset;
-                        ln -s $cfg_folder/$asset $home/$asset;
+                        ln -s $dircfg/$asset $home/$asset;
                       else
                         echo mv $home/$asset $backup_folder/$asset;
-                        echo ln -s $cfg_folder/$asset $home/$asset;
+                        echo ln -s $dircfg/$asset $home/$asset;
                     fi
                 fi
               else
@@ -74,10 +74,10 @@ deploy_assets() {
                 if [ $debug = false ];
                   then
                     mv $home/$asset $backup_folder/$asset;
-                    ln -s $cfg_folder/$asset $home/$asset;
+                    ln -s $dircfg/$asset $home/$asset;
                   else
                     echo mv $home/$asset $backup_folder/$asset;
-                    echo ln -s $cfg_folder/$asset $home/$asset;
+                    echo ln -s $dircfg/$asset $home/$asset;
                 fi
             fi
         fi
@@ -89,15 +89,15 @@ if [ ! -e $backup_folder ];
   then mkdir -p $backup_folder;
 fi
 
-if [ ! -e $cfg_folder ];
+if [ ! -e $dircfg ];
   then
       curl -LsO ${giturl}
       tar zxvf cfg-master.tar.gz
-      mv cfg-master ${deploy_dir}
+      mv cfg-master/dotfiles ${deploy_dir}
       rm cfg-master.tar.gz
   else
-    echo "Config already deployed in $cfg_folder"
+    echo "Config already deployed in $dircfg"
 fi
 
-assets=$(ls -A1 $cfg_folder | egrep -v $ignored | xargs);
+assets=$(ls -A1 $dircfg | egrep -v $ignored | xargs);
 deploy_assets
