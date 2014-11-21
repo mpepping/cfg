@@ -1,5 +1,7 @@
 #!/usr/bin/env bash
 
+debug=false
+
 if [ $(whoami) = "root" ];
   then
     home="/root";
