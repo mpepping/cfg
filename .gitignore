@@ -1,4 +1,4 @@
 .DS_Store
 *.swp
 .netrwhist
-dotfiles/.vim/bundle/vim-indexed-search/.git
+dotfiles/.vim/bundle/vim-indexed-search
