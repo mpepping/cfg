@@ -46,7 +46,7 @@ deploy_assets() {
               then echo "Id[ignore dir] $home/$asset";
               else
                 echo "Cd[conflict dir] $home/$asset";
-                mv $home/$asset $backup_folder/$asset;
+                mv $home/$asset $backup_dir/$asset;
                 ln -s $dircfg/$asset $home/$asset;
             fi
           else
@@ -63,10 +63,10 @@ deploy_assets() {
                     echo "L [re-link] $home/$asset";
                     if [ $debug = false ];
                       then
-                        mv $home/$asset $backup_folder/$asset;
+                        mv $home/$asset $backup_dir/$asset;
                         ln -s $dircfg/$asset $home/$asset;
                       else
-                        echo mv $home/$asset $backup_folder/$asset;
+                        echo mv $home/$asset $backup_dir/$asset;
                         echo ln -s $dircfg/$asset $home/$asset;
                     fi
                 fi
@@ -75,10 +75,10 @@ deploy_assets() {
                 echo "C [conflict] $home/$asset";
                 if [ $debug = false ];
                   then
-                    mv $home/$asset $backup_folder/$asset;
+                    mv $home/$asset $backup_dir/$asset;
                     ln -s $dircfg/$asset $home/$asset;
                   else
-                    echo mv $home/$asset $backup_folder/$asset;
+                    echo mv $home/$asset $backup_dir/$asset;
                     echo ln -s $dircfg/$asset $home/$asset;
                 fi
             fi
@@ -87,8 +87,8 @@ deploy_assets() {
   done
 }
 
-if [ ! -e $backup_folder ];
-  then mkdir -p $backup_folder;
+if [ ! -e $backup_dir ];
+  then mkdir -p $backup_dir;
 fi
 
 if [ ! -e $dircfg ];
