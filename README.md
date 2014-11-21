@@ -5,7 +5,7 @@ dotfiles - vim, bash, screen, tmux etc. For a quick&&dirty workspace setup.
 
 Deploy in $HOME by runnning:
 
-    curl -Lks https://raw.githubusercontent.com/mpepping/cfg/master/deploy.sh| bash
+    curl -Lks https://raw.githubusercontent.com/mpepping/cfg/master/deploy.sh | bash
 
 or
 
