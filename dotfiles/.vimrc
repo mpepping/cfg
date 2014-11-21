@@ -194,7 +194,6 @@ endif
 " =======
 call pathogen#infect()                      " invoke \
 call pathogen#helptags()                    " autoload/pathogen.vim
-let g:pathogen_disabled["Gist"]
 
 let g:NERDTreeWinPos = "right"              " show filebrowser on the right
 let g:ctrlp_open_new_file = 't'             " open files in a new tab
