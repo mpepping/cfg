@@ -9,8 +9,8 @@ if [ $(whoami) = "root" ];
     home=$HOME;
 fi
 
-dircfg=".config"
-dirbck=".config_backup"
+dircfg=".cfg"
+dirbck=".cfg_backup"
 giturl="https://github.com/mpepping/cfg/archive/master.tar.gz"
 ignore="deploy.sh|.git$|.gitmodule|.gitignore|README.md"
 

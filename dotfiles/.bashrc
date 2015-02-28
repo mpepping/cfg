@@ -17,3 +17,9 @@ export LC_CTYPE=en_US.UTF-8
 
 #PS1="┌─[\[\e[0;36m\]\w\[\e[0m\]] \n└─▪ "
 PS1="┌─[\[\e[0;36m\]\u@\h:\w\[\e[0m\]] \n└─▪ "
+
+# Source global definitions
+if [ -f /etc/bashrc ]; then
+        . /etc/bashrc
+fi
+
