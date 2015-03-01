@@ -1,5 +1,3 @@
-[core]
-
 [user]
 	name = Martijn Pepping
 	email = martijn@xbsd.nl
@@ -17,5 +15,6 @@
 	hist = log --graph --date=short
 	histone = log --graph --decorate --abbrev-commit --all --pretty=oneline
 
-[http]
-	sslVerify = false
+[core]
+	excludesfile = /Users/martijn/.gitignore_global
+
