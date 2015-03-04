@@ -85,6 +85,16 @@ set list              " for whitespace, tabs and line-endings
 " Markdown to HTML
 nmap <leader>md :%!/Users/martijn/bin/Markdown.pl --html4tags<cr></cr></leader>
 
+" Markdown inline syntax highlighting
+" ```ruby
+" puts foo
+" ````
+au BufNewFile,BufReadPost *.md set filetype=markdown
+let g:markdown_fenced_languages = ['css', 'erb=eruby', 'javascript', 'js=javascript', 'json=javascript', 'ruby', 'sass', 'xml', 'html']
+
+
+" Copy on mouse-select
+:noremap <LeftRelease> "+y<LeftRelease>
 
 
 " ======
