@@ -1,7 +1,7 @@
 PATH=$HOME/bin:/usr/bin:/bin:/usr/sbin:/sbin:/usr/local/bin:/usr/X11/bin:$HOME/.rvm/bin:$PATH
 export PATH=/usr/local/bin:$PATH
 
-alias ls='ls -G'
+alias ls='ls -G --color=auto'
 alias l='ls -la'
 alias ll='ls -lart'
 alias inetdns='dig myip.opendns.com @Resolver1.opendns.com +short'
