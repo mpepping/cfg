@@ -19,7 +19,9 @@ export LC_ALL='en_US.UTF-8'
 export LC_CTYPE='en_US.UTF-8'
 
 
-PS1='┌─[\[\e[0;36m\]\w\[\e[0m\]] \n└─▪ '
+## PS1 /w username@host unless git-prompt is sourced.
+#PS1='┌─[\[\e[0;36m\]\w\[\e[0m\]] \n└─▪ '
+PS1='┌─[\[\e[0;36m\]\w\[\e[0m\]] [\[\e[0;35m\]\u@\h\[\e[0m\]] \n└─▪ '
 # 
 if [ -f ~/code/scripts/git-prompt.sh ]; then
   source ~/code/scripts/git-prompt.sh
