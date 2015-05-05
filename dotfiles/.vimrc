@@ -2,7 +2,7 @@
 "
 " My .vimrc for Vim, MacVim and Gvim/win32
 
-
+"   0. VUNDLE SETUP
 "   1. FILE HANDLING
 "   2. LOOK & FEEL
 "   3. FUNCTIONS
@@ -11,15 +11,45 @@
 "   6. SPELL & DICT
 "   7. PLUGINS
 
+
+" ============
+" VUNDLE SETUP
+" ============
+
+" temp settings
+set nocompatible
+filetype off
+
+set rtp+=~/.vim/bundle/vundle
+call vundle#begin()
+
+Plugin 'gmarik/vundle'
+
+Plugin 'bling/vim-airline'
+Plugin 'ddollar/nerdcommenter'
+Plugin 'fatih/vim-go'
+Plugin 'godlygeek/tabular'
+Plugin 'henrik/vim-indexed-search'
+Plugin 'raimondi/delimitMate'
+Plugin 'rizzatti/dash.vim'
+Plugin 'rodjek/vim-puppet'
+Plugin 'scrooloose/nerdtree'
+Plugin 'tpope/vim-fugitive'
+Plugin 'tpope/vim-surround'
+Plugin 'vim-ruby/vim-ruby'
+Plugin 'yggdroot/indentLine'
+
+call vundle#end()
+
+
 " =============
 " FILE HANDLING
 " =============
 
 filetype plugin indent on
-set ofu=syntaxcomplete#Complete
 
 if (has("syntax") !=0)
-        syntax on
+    syntax on
 endif
 
 set expandtab         " soft tabs
@@ -45,6 +75,8 @@ set wrap              " wrap lines
 " LOOK & FEEL
 " ===========
 
+color heroku-terminal
+set title           " set terminal title
 set bg=dark
 set backspace=2
 set nocp
@@ -61,7 +93,9 @@ set showmatch         " show matching brackets when text indicator is over them
 set mat=2             " how many tenths of a second to blink when matching brackets
 set laststatus=2      " always show the status line
 set magic             " for regex
-set list              " for whitespace, tabs and line-endings
+"set list              " for whitespace, tabs and line-endings
+
+set complete=.,w,b,u,t,i,kspell "added kspell, to add from dict when spell is set.
 
 
 
@@ -69,21 +103,13 @@ set list              " for whitespace, tabs and line-endings
 " FUNCTIONS
 " =========
 
-"" BEGIN - CTRL-N to toggle line numbering
-"function! NumberToggle()
-"  if(&relativenumber == 1)
-"    set number
-"  else
-"    set relativenumber
-"  endif
-"endfunc
-"
-"nnoremap <C-n> :call NumberToggle()<cr>
-"" END
-
-
 " Markdown to HTML
 nmap <leader>md :%!/Users/martijn/bin/Markdown.pl --html4tags<cr></cr></leader>
+
+nmap <leader>l :set list!<cr>            " Toggle set list with \+l.
+nmap <leader>n :set number!<cr>          " Toggle number with \+n
+nmap <leader>N :set relativenumber!<cr>  " Toggle relativenumber with \+N
+
 
 " Markdown inline syntax highlighting
 " ```ruby
@@ -103,16 +129,18 @@ let g:markdown_fenced_languages = ['css', 'erb=eruby', 'javascript', 'js=javascr
 
 " Set options and add mapping specific for MacVim
 
-"if has("gui_running")
-if has("mac") || has("macunix")
+if has("gui_running")
+"if has("mac") || has("macunix")  " messes up vim coloscheme in  terminal (brew vim74)
   set guioptions=-t           "no tearoff menu
   set guioptions-=T           "hide menubar
   set guioptions+=e           "use gui tabs
   set guitablabel=%M\ %t
   set vb                      "no bell
-  set lines=48 columns=160    "sane window size
+  "set lines=48 columns=160    "sane window size
+  set lines=999 columns=999   "max window size
 
-  color atom-dark
+  color heroku
+  "color atom-dark
   "color codetool
   "color darkblue
   "color molokai
@@ -120,7 +148,8 @@ if has("mac") || has("macunix")
   "color desert
   "color evening
 
-  set guifont=Menlo\ Regular:h18
+  set guifont=Menlo\ for\ PowerLine:h14
+  "set guifont=Menlo\ Regular:h14
   "set guifont=Consolas:h16
   set t_Co=256
 
@@ -205,10 +234,15 @@ endif
 " =======
 " PLUGINS
 " =======
-call pathogen#infect()                      " invoke \
-call pathogen#helptags()                    " autoload/pathogen.vim
 
-let g:NERDTreeWinPos = "right"              " show filebrowser on the right
-let g:ctrlp_open_new_file = 't'             " open files in a new tab
-let g:nerdtree_tabs_open_on_gui_startup = 0 " no nerdtree by default in gui
-
+"let g:ctrlp_open_new_file = 't'             " open files in a new tab
+"let g:NERDTreeWinPos = "right"              " show filebrowser on the right
+"let g:nerdtree_tabs_open_on_gui_startup = 0 " no nerdtree by default in gui
+let g:airline_powerline_fonts = 1
+"let g:Powerline_symbols = 'fancy'
+"let g:Powerline_mode_V="V·LINE"
+"let g:Powerline_mode_cv="V·BLOCK"
+"let g:Powerline_mode_S="S·LINE"
+"let g:Powerline_mode_cs="S·BLOCK"
+let loaded_delimitMate = 1
+let delimitMate_autoclose = 1
