@@ -23,14 +23,14 @@ filetype off
 set rtp+=~/.vim/bundle/vundle
 call vundle#begin()
 
-Plugin 'gmarik/vundle'
+"Plugin 'gmarik/vundle'
 
 Plugin 'bling/vim-airline'
 Plugin 'ddollar/nerdcommenter'
 Plugin 'fatih/vim-go'
 Plugin 'godlygeek/tabular'
 Plugin 'henrik/vim-indexed-search'
-Plugin 'raimondi/delimitMate'
+Plugin 'mhinz/vim-signify'
 Plugin 'rizzatti/dash.vim'
 Plugin 'rodjek/vim-puppet'
 Plugin 'scrooloose/nerdtree'

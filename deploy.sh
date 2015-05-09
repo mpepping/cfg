@@ -17,6 +17,7 @@ ignore="deploy.sh|.git$|.gitmodule|.gitignore|README.md"
 deploy_dir=$home/$dircfg
 backup_dir=$home/$dirbck
 
+
 md5prog() {
   if [ $(uname) = "Darwin" ]; then
     md5 -q $1
@@ -26,20 +27,19 @@ md5prog() {
   fi
 }
 
-
 deploy_assets() {
   for asset in $assets ;
   do
     if [ ! -e $home/$asset ];
       then
-        #asset does not exist, can just copy it
+        # asset does not exist, can just copy it
         echo "N [new] $home/$asset";
         if [ $debug = false ];
           then ln -s $dircfg/$asset $home/$asset;
           else echo ln -s $dircfg/$asset $home/$asset;
         fi
       else
-        #asset is there already
+        # asset is there already
         if [ -d $home/$asset ];
           then
             if [ -h $home/$asset ];
@@ -53,7 +53,7 @@ deploy_assets() {
             ha=$(md5prog $home/$asset);
             ca=$(md5prog $dircfg/$asset);
             if [ $ha = $ca ];
-              #asset is exactly the same
+              # asset is exactly the same
               then
                 if [ -h $home/$asset ];
                   #asset is exactly the same and as link, all good
@@ -71,7 +71,7 @@ deploy_assets() {
                     fi
                 fi
               else
-                #asset exist but is different, must back it up
+                # asset exist but is different, must back it up
                 echo "C [conflict] $home/$asset";
                 if [ $debug = false ];
                   then
@@ -87,10 +87,12 @@ deploy_assets() {
   done
 }
 
+# create backupdir, if non existing
 if [ ! -e $backup_dir ];
   then mkdir -p $backup_dir;
 fi
 
+# deploy src is non existing
 if [ ! -e $dircfg ];
   then
       curl -LsO ${giturl}
@@ -103,3 +105,4 @@ fi
 
 assets=$(ls -A1 $dircfg | egrep -v $ignore | xargs);
 deploy_assets
+
