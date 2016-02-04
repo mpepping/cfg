@@ -23,7 +23,7 @@ filetype off
 set rtp+=~/.vim/bundle/vundle
 call vundle#begin()
 
-"Plugin 'gmarik/vundle'
+Plugin 'gmarik/vundle'
 
 Plugin 'bling/vim-airline'
 Plugin 'ddollar/nerdcommenter'
@@ -90,6 +90,7 @@ set ignorecase
 "set relativenumber
 set number
 set paste
+set noshowmode        " disable the -- INSERT -- message
 set ruler             " always show current position
 set showmatch         " show matching brackets when text indicator is over them
 set mat=2             " how many tenths of a second to blink when matching brackets
@@ -108,10 +109,16 @@ set complete=.,w,b,u,t,i,kspell "added kspell, to add from dict when spell is se
 " Markdown to HTML
 nmap <leader>md :%!/Users/martijn/bin/Markdown.pl --html4tags<cr></cr></leader>
 
-nmap <leader>l :set list!<cr>            " Toggle set list with \+l.
-nmap <leader>n :set number!<cr>          " Toggle number with \+n
-nmap <leader>N :set relativenumber!<cr>  " Toggle relativenumber with \+N
+nmap <leader>l :set list!<cr>             " Toggle set list with \+l.
+nmap <leader>n :set number!<cr>           " Toggle number with \+n
+nmap <leader>N :set relativenumber!<cr>   " Toggle relativenumber with \+N
+nmap <leader>m :IndentLinesToggle<cr>     " Toggle indentation chars
+nmap <leader>t :SyntasticToggleMode<cr>   " Toggle Syntastic
 
+" Use <C-L> to clear the highlighting of :set hlsearch.
+if maparg('<C-L>', 'n') ==# ''
+  nnoremap <silent> <C-L> :nohlsearch<CR><C-L>
+endif
 
 " Markdown inline syntax highlighting
 " ```ruby
@@ -123,6 +130,10 @@ let g:markdown_fenced_languages = ['css', 'erb=eruby', 'javascript', 'js=javascr
 
 " Copy on mouse-select
 :noremap <LeftRelease> "+y<LeftRelease>
+
+" I don't like ex mode
+:nnoremap Q <nop>
+
 
 
 " ======
@@ -241,10 +252,13 @@ endif
 "let g:NERDTreeWinPos = "right"              " show filebrowser on the right
 "let g:nerdtree_tabs_open_on_gui_startup = 0 " no nerdtree by default in gui
 let g:airline_powerline_fonts = 1
-"let g:Powerline_symbols = 'fancy'
-"let g:Powerline_mode_V="V·LINE"
-"let g:Powerline_mode_cv="V·BLOCK"
-"let g:Powerline_mode_S="S·LINE"
-"let g:Powerline_mode_cs="S·BLOCK"
-let loaded_delimitMate = 1
-let delimitMate_autoclose = 1
+
+set statusline+=%#warningmsg#
+set statusline+=%{SyntasticStatuslineFlag()}
+set statusline+=%*
+let g:syntastic_always_populate_loc_list = 1
+let g:syntastic_auto_loc_list = 1
+let g:syntastic_check_on_open = 1
+let g:syntastic_check_on_wq = 0
+
+let g:indentLine_enabled = 0

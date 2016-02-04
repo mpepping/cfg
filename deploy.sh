@@ -1,4 +1,7 @@
 #!/usr/bin/env bash
+#
+# Setup dotfiles.
+
 
 debug=false
 
@@ -105,4 +108,3 @@ fi
 
 assets=$(ls -A1 $dircfg | egrep -v $ignore | xargs);
 deploy_assets
-
