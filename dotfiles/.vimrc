@@ -6,17 +6,18 @@
 "   1. FILE HANDLING
 "   2. LOOK & FEEL
 "   3. FUNCTIONS
-"   4. MACVIM
-"   5. GVIM/WIN32
-"   6. SPELL & DICT
-"   7. PLUGINS
+"   4. NETRW CFG
+"   5. MACVIM
+"   6. GVIM/WIN32
+"   7. SPELL & DICT
+"   8. PLUGINS
 
 
 " ============
 " VUNDLE SETUP
 " ============
 
-" temp settings
+" temp. unset for Vundle
 set nocompatible
 filetype off
 
@@ -25,16 +26,19 @@ call vundle#begin()
 
 Plugin 'gmarik/vundle'
 
+"Plugin 'Xuyuanp/nerdtree-git-plugin'
+"Plugin 'ervandew/supertab'
+"Plugin 'scrooloose/nerdtree'
+"Plugin 'rizzatti/dash.vim'
 Plugin 'bling/vim-airline'
-Plugin 'ddollar/nerdcommenter'
 Plugin 'fatih/vim-go'
 Plugin 'godlygeek/tabular'
 Plugin 'henrik/vim-indexed-search'
 Plugin 'mbbill/undotree'
 Plugin 'mhinz/vim-signify'
-Plugin 'rizzatti/dash.vim'
+Plugin 'mzlogin/vim-markdown-toc'
 Plugin 'rodjek/vim-puppet'
-Plugin 'scrooloose/nerdtree'
+Plugin 'scrooloose/nerdcommenter'
 Plugin 'scrooloose/syntastic'
 Plugin 'tpope/vim-fugitive'
 Plugin 'tpope/vim-surround'
@@ -72,12 +76,20 @@ set wrap              " wrap lines
 
 "autocmd BufNewFile,BufRead *.pp set filetype=ruby
 
+" Markdown inline syntax highlighting
+" ```ruby
+" puts foo
+" ````
+au BufNewFile,BufReadPost *.md set filetype=markdown
+let g:markdown_fenced_languages = ['css', 'erb=eruby', 'javascript', 'js=javascript', 'json=javascript', 'ruby', 'sass', 'xml', 'html']
+
 
 " ===========
 " LOOK & FEEL
 " ===========
 
-color heroku-terminal
+"color heroku-terminal
+color molokai
 set title           " set terminal title
 set bg=dark
 set backspace=2
@@ -90,7 +102,7 @@ set ignorecase
 "set relativenumber
 set number
 set paste
-set noshowmode        " disable the -- INSERT -- message
+set noshowmode        " disable the -- INSERT -- message, since we use Airline
 set ruler             " always show current position
 set showmatch         " show matching brackets when text indicator is over them
 set mat=2             " how many tenths of a second to blink when matching brackets
@@ -106,34 +118,88 @@ set complete=.,w,b,u,t,i,kspell "added kspell, to add from dict when spell is se
 " FUNCTIONS
 " =========
 
-" Markdown to HTML
-nmap <leader>md :%!/Users/martijn/bin/Markdown.pl --html4tags<cr></cr></leader>
+" just don't forget sudo 
+noremap  W :w !sudo tee %<CR><CR>
+noremap  Q :w !sudo tee %<CR><CR>:q!<CR>
 
-nmap <leader>l :set list!<cr>             " Toggle set list with \+l.
-nmap <leader>n :set number!<cr>           " Toggle number with \+n
-nmap <leader>N :set relativenumber!<cr>   " Toggle relativenumber with \+N
-nmap <leader>m :IndentLinesToggle<cr>     " Toggle indentation chars
-nmap <leader>t :SyntasticToggleMode<cr>   " Toggle Syntastic
+" Toggle set list with \+l
+nnoremap <leader>l :set list!<CR>
+
+" Toggle number with \+n
+nnoremap <leader>n :set number!<CR>
+
+" Toggle relativenumber with \+N
+nnoremap <leader>N :set relativenumber!<CR>
+
+" Toggle indentation chars
+nnoremap <leader>m :IndentLinesToggle<CR>
+
+" Toggle set paste with \+p
+nnoremap <leader>p :set paste<CR>
+
+" Toggle Syntastic
+nnoremap <leader>t :SyntasticToggleMode<CR>
+
+" Strip whitespace
+nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
+
+" Select pasted text 
+nnoremap <leader>v V`]
 
 " Use <C-L> to clear the highlighting of :set hlsearch.
 if maparg('<C-L>', 'n') ==# ''
   nnoremap <silent> <C-L> :nohlsearch<CR><C-L>
 endif
 
-" Markdown inline syntax highlighting
-" ```ruby
-" puts foo
-" ````
-au BufNewFile,BufReadPost *.md set filetype=markdown
-let g:markdown_fenced_languages = ['css', 'erb=eruby', 'javascript', 'js=javascript', 'json=javascript', 'ruby', 'sass', 'xml', 'html']
-
-
 " Copy on mouse-select
-:noremap <LeftRelease> "+y<LeftRelease>
+noremap <LeftRelease> "+y<LeftRelease>
 
 " I don't like ex mode
-:nnoremap Q <nop>
+"nnoremap Q <nop>
 
+" Toggle NERDtree
+"nnoremap <leader>d :NERDTreeToggle<CR>
+"nnoremap <leader>f :NERDTreeFind<CR>
+
+
+" =========
+" NETRW CFG
+" =========
+
+" netrw config - https://shapeshed.com/vim-netrw/
+let g:netrw_banner=0 "no heading
+let g:netrw_browse_split=3 "open in new tab/buffer
+let g:netrw_altv=1 "open spilts to the right
+let g:netrw_liststyle=3 "tree view
+let g:netrw_list_hide=netrw_gitignore#Hide()
+let g:netrw_list_hide.='\(^\|\s\s\)\zs\.\S\+'
+let g:netrw_winsize = 25
+
+nnoremap <leader>d :Vexplore<CR>
+
+
+" Toggle Vexplore with CTRL+E
+function! ToggleVExplorer()
+  if exists("t:expl_buf_num")
+      let expl_win_num = bufwinnr(t:expl_buf_num)
+      if expl_win_num != -1
+          let cur_win_nr = winnr()
+          exec expl_win_num . 'wincmd w'
+          close
+          exec cur_win_nr . 'wincmd w'
+          unlet t:expl_buf_num
+      else
+          unlet t:expl_buf_num
+      endif
+  else
+      exec '1wincmd w'
+      Vexplore
+      let t:expl_buf_num = bufnr("%")
+  endif
+endfunction
+map <silent> <C-E> :call ToggleVExplorer()<CR>
+
+set autochdir " Change directory to the current buffer when opening files
 
 
 " ======
@@ -152,14 +218,26 @@ if has("gui_running")
   "set lines=48 columns=160    "sane window size
   set lines=999 columns=999   "max window size
 
-  color heroku
+  color molokai
   "color atom-dark
+  "color blackboard
   "color codetool
   "color darkblue
-  "color molokai
-  "color blackboard
   "color desert
+  "color dracula
   "color evening
+  "color heroku
+  "color onedark
+
+  nnoremap <leader>1 :colorscheme heroku<cr>
+  nnoremap <leader>2 :colorscheme dracula<cr>
+  nnoremap <leader>3 :colorscheme onedark<cr>
+  nnoremap <leader>4 :colorscheme blackboard<cr>
+  nnoremap <leader>5 :colorscheme molokai<cr>
+  nnoremap <leader>6 :colorscheme atom-dark<cr>
+  nnoremap <leader>6 :colorscheme desert<cr>
+  nnoremap <leader>7 :colorscheme blue<cr>
+  nnoremap <leader>8 :colorscheme default<cr>
 
   set guifont=Menlo\ for\ PowerLine:h14
   "set guifont=Menlo\ Regular:h14
@@ -231,17 +309,20 @@ if has("spell")
 " ]s volgende misspelled
 " kies een taal & zet spell checking aan (vim>=7.x)
 " setlocal spell spelllang=nl
-        setlocal spell spelllang=en
-        set nospell
-        highlight clear SpellBad
-        highlight SpellBad term=standout ctermfg=1 term=underline cterm=underline gui=underline
-        highlight clear SpellCap
-        highlight SpellCap term=underline cterm=underline gui=underline
-        highlight clear SpellRare
-        highlight SpellRare term=underline cterm=underline gui=underline
-        highlight clear SpellLocal
-        highlight SpellLocal term=underline cterm=underline gui=underline
+  setlocal spell spelllang=en
+  set nospell
+  highlight clear SpellBad
+  highlight SpellBad term=standout ctermfg=1 term=underline cterm=underline gui=underline
+  highlight clear SpellCap
+  highlight SpellCap term=underline cterm=underline gui=underline
+  highlight clear SpellRare
+  highlight SpellRare term=underline cterm=underline gui=underline
+  highlight clear SpellLocal
+  highlight SpellLocal term=underline cterm=underline gui=underline
 endif
+
+" Spell check git commits
+autocmd FileType gitcommit setlocal spell spelllang=en,nl
 
 
 " =======
@@ -251,7 +332,9 @@ endif
 "let g:ctrlp_open_new_file = 't'             " open files in a new tab
 "let g:NERDTreeWinPos = "right"              " show filebrowser on the right
 "let g:nerdtree_tabs_open_on_gui_startup = 0 " no nerdtree by default in gui
+
 let g:airline_powerline_fonts = 1
+let g:airline#extensions#tabline#enabled = 1 " alternate tab line
 
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
@@ -260,5 +343,5 @@ let g:syntastic_always_populate_loc_list = 1
 let g:syntastic_auto_loc_list = 1
 let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
-
 let g:indentLine_enabled = 0
+
