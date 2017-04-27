@@ -235,11 +235,10 @@ if has("gui_running")
   nnoremap <leader>4 :colorscheme blackboard<cr>
   nnoremap <leader>5 :colorscheme molokai<cr>
   nnoremap <leader>6 :colorscheme atom-dark<cr>
-  nnoremap <leader>6 :colorscheme desert<cr>
   nnoremap <leader>7 :colorscheme blue<cr>
   nnoremap <leader>8 :colorscheme default<cr>
 
-  set guifont=Menlo\ for\ PowerLine:h14
+  set guifont=Menlo\ for\ PowerLine:h12
   "set guifont=Menlo\ Regular:h14
   "set guifont=Consolas:h16
   set t_Co=256
@@ -309,7 +308,7 @@ if has("spell")
 " ]s volgende misspelled
 " kies een taal & zet spell checking aan (vim>=7.x)
 " setlocal spell spelllang=nl
-  setlocal spell spelllang=en
+  setlocal spell spelllang=en,nl
   set nospell
   highlight clear SpellBad
   highlight SpellBad term=standout ctermfg=1 term=underline cterm=underline gui=underline
@@ -324,6 +323,10 @@ endif
 " Spell check git commits
 autocmd FileType gitcommit setlocal spell spelllang=en,nl
 
+augroup spellcheck_documentation
+  autocmd BufNewFile,BufRead *.md setlocal spell
+  autocmd BufNewFile,BufRead *.rdoc setlocal spell
+augroup END
 
 " =======
 " PLUGINS
@@ -345,3 +348,30 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:indentLine_enabled = 0
 
+
+" alternate airline .. for SF Mono font
+if !exists('g:airline_symbols')
+	let g:airline_symbols = {}
+endif
+
+let g:airline_powerline_fonts = 0
+let g:airline_symbols.paste = 'ρ'
+let g:airline_symbols.whitespace = 'Ξ'
+
+if g:airline_powerline_fonts == 1
+    let g:airline_left_sep = ''
+    let g:airline_left_alt_sep = ''
+    let g:airline_right_sep = ''
+    let g:airline_right_alt_sep = ''
+    let g:airline_symbols.branch = ''
+    let g:airline_symbols.readonly = ''
+    let g:airline_symbols.linenr = ''
+else
+    let g:airline_left_sep = ''
+    let g:airline_left_alt_sep = ''
+    let g:airline_right_sep = ''
+    let g:airline_right_alt_sep = ''
+    let g:airline_symbols.branch = '⎋'
+    let g:airline_symbols.readonly = '✖︎'
+    let g:airline_symbols.linenr = '␤'
+end
