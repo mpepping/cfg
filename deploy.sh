@@ -5,7 +5,7 @@
 
 debug=false
 
-if [ $(whoami) = "root" ];
+if [ "$(whoami)" = "root" ];
   then
     home="/root";
   else
@@ -22,40 +22,40 @@ backup_dir=$home/$dirbck
 
 
 md5prog() {
-  if [ $(uname) = "Darwin" ]; then
-    md5 -q $1
+  if [ "$(uname)" = "Darwin" ]; then
+    md5 -q "$1"
   fi
-  if [ $(uname) = "Linux" ]; then
-    md5sum $1 | awk {'print $1'}
+  if [ "$(uname)" = "Linux" ]; then
+    md5sum "$1" | awk '{print $1}'
   fi
 }
 
 deploy_assets() {
   for asset in $assets ;
   do
-    if [ ! -e $home/$asset ];
+    if [ ! -e "${home}/${asset}" ];
       then
         # asset does not exist, can just copy it
         echo "N [new] $home/$asset";
         if [ $debug = false ];
-          then ln -s $dircfg/$asset $home/$asset;
-          else echo ln -s $dircfg/$asset $home/$asset;
+          then ln -s "$dircfg/$asset $home/$asset";
+          else echo ln -s "$dircfg/$asset $home/$asset";
         fi
       else
         # asset is there already
-        if [ -d $home/$asset ];
+        if [ -d "$home/$asset" ];
           then
-            if [ -h $home/$asset ];
+            if [ -h "$home/$asset" ];
               then echo "Id[ignore dir] $home/$asset";
               else
                 echo "Cd[conflict dir] $home/$asset";
-                mv $home/$asset $backup_dir/$asset;
-                ln -s $dircfg/$asset $home/$asset;
+                mv "$home/$asset $backup_dir/$asset";
+                ln -s "$dircfg/$asset $home/$asset";
             fi
           else
-            ha=$(md5prog $home/$asset);
-            ca=$(md5prog $dircfg/$asset);
-            if [ $ha = $ca ];
+            ha=$(md5prog "$home/$asset");
+            ca=$(md5prog "$dircfg/$asset");
+            if [ "$ha" = "$ca" ];
               # asset is exactly the same
               then
                 if [ -h $home/$asset ];
@@ -100,7 +100,7 @@ if [ ! -e $dircfg ];
   then
       curl -LsO ${giturl}
       tar zxf master.tar.gz
-      mv cfg-master/dotfiles ${deploy_dir}
+      mv cfg-master/dotfiles "${deploy_dir}"
       rm master.tar.gz
   else
     echo "Config already deployed in $dircfg"
