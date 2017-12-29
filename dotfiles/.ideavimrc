@@ -1,9 +1,0 @@
-set visualbell
-set noerrorbells
-
-set incsearch
-set smartcase
-set hlsearch
-set ignorecase
-set number
-set paste

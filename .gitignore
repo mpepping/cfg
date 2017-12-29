@@ -3,3 +3,4 @@
 .netrwhist
 dotfiles/.vim/bundle/vim-indexed-search
 .idea
+testvm

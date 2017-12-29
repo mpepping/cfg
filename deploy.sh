@@ -2,7 +2,6 @@
 #
 # Setup dotfiles.
 
-
 debug=false
 
 if [ "$(whoami)" = "root" ];
@@ -19,7 +18,6 @@ ignore="deploy.sh|.git$|.gitmodule|.gitignore|README.md"
 
 deploy_dir=$home/$dircfg
 backup_dir=$home/$dirbck
-
 
 md5prog() {
   if [ "$(uname)" = "Darwin" ]; then

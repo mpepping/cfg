@@ -1,7 +1,7 @@
 [user]
 	name = Martijn Pepping
-	email = martijn@xbsd.nl
-	
+	email = martijn.pepping@automiq.nl
+
 [github]
 	user = mpepping
 
@@ -17,4 +17,3 @@
 
 [core]
 	excludesfile = /Users/martijn/.gitignore_global
-
