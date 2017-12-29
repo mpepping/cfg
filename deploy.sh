@@ -36,8 +36,8 @@ deploy_assets() {
         # asset does not exist, can just copy it
         echo "N [new] $home/$asset";
         if [ $debug = false ];
-          then ln -s "$dircfg/$asset $home/$asset";
-          else echo ln -s "$dircfg/$asset $home/$asset";
+          then ln -s "$dircfg/$asset" "$home/$asset";
+        else echo ln -s "$dircfg/$asset" "$home/$asset";
         fi
       else
         # asset is there already
