@@ -2,7 +2,7 @@
 #
 # Setup dotfiles.
 
-debug=true
+debug=false
 
 if [ "$(whoami)" = "root" ];
   then
