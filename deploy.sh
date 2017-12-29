@@ -2,7 +2,7 @@
 #
 # Setup dotfiles.
 
-debug=false
+debug=true
 
 if [ "$(whoami)" = "root" ];
   then
@@ -47,8 +47,8 @@ deploy_assets() {
               then echo "Id[ignore dir] $home/$asset";
               else
                 echo "Cd[conflict dir] $home/$asset";
-                mv "$home/$asset $backup_dir/$asset";
-                ln -s "$dircfg/$asset $home/$asset";
+                mv "$home/$asset" "$backup_dir/$asset";
+                ln -s "$dircfg/$asset" "$home/$asset";
             fi
           else
             ha=$(md5prog "$home/$asset");
