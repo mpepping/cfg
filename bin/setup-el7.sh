@@ -1,3 +1,3 @@
 #!/bin/bash
 
-sudo yum install vim-enhanced bash-compltion git -y
+sudo yum install vim-enhanced bash-completion git -y
