@@ -1,16 +1,3 @@
-" 20140201 - Martijn Pepping <martijn@xbsd.nl>
-"
-" My .vimrc for Vim, MacVim and Gvim/win32
-
-"   0. VUNDLE SETUP
-"   1. FILE HANDLING
-"   2. LOOK & FEEL
-"   3. FUNCTIONS
-"   4. NETRW CFG
-"   5. MACVIM
-"   6. GVIM/WIN32
-"   7. SPELL & DICT
-"   8. PLUGINS
 
 
 " ============
@@ -26,32 +13,13 @@ call vundle#begin()
 
 Plugin 'gmarik/vundle'
 
-"Plugin 'Xuyuanp/nerdtree-git-plugin'
-"Plugin 'ervandew/supertab'
-"Plugin 'scrooloose/nerdtree'
-"Plugin 'rizzatti/dash.vim'
-Plugin 'bling/vim-airline'
-Plugin 'fatih/vim-go'
-Plugin 'godlygeek/tabular'
-Plugin 'henrik/vim-indexed-search'
-Plugin 'mbbill/undotree'
-Plugin 'mhinz/vim-signify'
-Plugin 'mzlogin/vim-markdown-toc'
-Plugin 'rodjek/vim-puppet'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'scrooloose/syntastic'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-surround'
-Plugin 'vim-ruby/vim-ruby'
-Plugin 'yggdroot/indentLine'
-
 call vundle#end()
 
 
-" =============
-" FILE HANDLING
-" =============
 
+" =============
+" REGULAR STUFF
+" =============
 filetype plugin indent on
 
 if (has("syntax") !=0)
@@ -76,10 +44,6 @@ set wrap              " wrap lines
 
 "autocmd BufNewFile,BufRead *.pp set filetype=ruby
 
-" Markdown inline syntax highlighting
-" ```ruby
-" puts foo
-" ````
 au BufNewFile,BufReadPost *.md set filetype=markdown
 let g:markdown_fenced_languages = ['css', 'erb=eruby', 'javascript', 'js=javascript', 'json=javascript', 'ruby', 'sass', 'xml', 'html']
 
@@ -118,7 +82,7 @@ set complete=.,w,b,u,t,i,kspell "added kspell, to add from dict when spell is se
 " FUNCTIONS
 " =========
 
-" just don't forget sudo 
+" just don't forget sudo
 noremap  W :w !sudo tee %<CR><CR>
 noremap  Q :w !sudo tee %<CR><CR>:q!<CR>
 
@@ -143,7 +107,7 @@ nnoremap <leader>t :SyntasticToggleMode<CR>
 " Strip whitespace
 nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
 
-" Select pasted text 
+" Select pasted text
 nnoremap <leader>v V`]
 
 " Use <C-L> to clear the highlighting of :set hlsearch.
@@ -166,17 +130,7 @@ noremap <LeftRelease> "+y<LeftRelease>
 " NETRW CFG
 " =========
 
-" netrw config - https://shapeshed.com/vim-netrw/
-let g:netrw_banner=0 "no heading
-let g:netrw_browse_split=3 "open in new tab/buffer
-let g:netrw_altv=1 "open spilts to the right
-let g:netrw_liststyle=3 "tree view
-let g:netrw_list_hide=netrw_gitignore#Hide()
-let g:netrw_list_hide.='\(^\|\s\s\)\zs\.\S\+'
-let g:netrw_winsize = 25
-
 nnoremap <leader>d :Vexplore<CR>
-
 
 " Toggle Vexplore with CTRL+E
 function! ToggleVExplorer()
@@ -201,96 +155,6 @@ map <silent> <C-E> :call ToggleVExplorer()<CR>
 
 set autochdir " Change directory to the current buffer when opening files
 
-
-" ======
-" MACVIM
-" ======
-
-" Set options and add mapping specific for MacVim
-
-if has("gui_running")
-"if has("mac") || has("macunix")  " messes up vim coloscheme in  terminal (brew vim74)
-  set guioptions=-t           "no tearoff menu
-  set guioptions-=T           "hide menubar
-  set guioptions+=e           "use gui tabs
-  set guitablabel=%M\ %t
-  set vb                      "no bell
-  "set lines=48 columns=160    "sane window size
-  set lines=999 columns=999   "max window size
-
-  color molokai
-  "color atom-dark
-  "color blackboard
-  "color codetool
-  "color darkblue
-  "color desert
-  "color dracula
-  "color evening
-  "color heroku
-  "color onedark
-
-  nnoremap <leader>1 :colorscheme heroku<cr>
-  nnoremap <leader>2 :colorscheme dracula<cr>
-  nnoremap <leader>3 :colorscheme onedark<cr>
-  nnoremap <leader>4 :colorscheme blackboard<cr>
-  nnoremap <leader>5 :colorscheme molokai<cr>
-  nnoremap <leader>6 :colorscheme atom-dark<cr>
-  nnoremap <leader>7 :colorscheme blue<cr>
-  nnoremap <leader>8 :colorscheme default<cr>
-
-  set guifont=Menlo\ for\ PowerLine:h12
-  "set guifont=Menlo\ Regular:h14
-  "set guifont=Consolas:h16
-  set t_Co=256
-
-endif
-
-
-" ==========
-" GVIM/WIN32
-" ==========
-
-if has("win32") || has("win16")
-  set guifont=Lucida_Console:h10:cANSI
-
-  " Set options and add mapping such that Vim behaves a lot like MS-Windows
-  " Stolen from: source $VIMRUNTIME\mswin.vim
-
-  set directory=.,$TEMP
-  set lines=48 columns=120
-  set clipboard=unnamed
-  set backspace=indent,eol,start
-
-  " backspace in Visual mode deletes selection
-  vnoremap <BS> d
-
-  " CTRL-X and SHIFT-Del are Cut
-  vnoremap <C-X> "+x
-  vnoremap <S-Del> "+x
-
-  " CTRL-C and CTRL-Insert are Copy
-  vnoremap <C-C> "+y
-  vnoremap <C-Insert> "+y
-
-  " CTRL-V and SHIFT-Insert are Paste
-  "map <C-V>    "+gP
-  map <S-Insert>    "+gP
-
-  cmap <C-V>    <C-R>+
-  cmap <S-Insert>   <C-R>+
-
-  " CTRL-Tab is Next window
-  noremap <C-Tab> <C-W>w
-  inoremap <C-Tab> <C-O><C-W>w
-  cnoremap <C-Tab> <C-C><C-W>w
-  onoremap <C-Tab> <C-C><C-W>w
-
-  " CTRL-F4 is Close window
-  noremap <C-F4> <C-W>c
-  inoremap <C-F4> <C-O><C-W>c
-  cnoremap <C-F4> <C-C><C-W>c
-  onoremap <C-F4> <C-C><C-W>c
-endif
 
 
 " ============
@@ -332,46 +196,7 @@ augroup END
 " PLUGINS
 " =======
 
-"let g:ctrlp_open_new_file = 't'             " open files in a new tab
-"let g:NERDTreeWinPos = "right"              " show filebrowser on the right
-"let g:nerdtree_tabs_open_on_gui_startup = 0 " no nerdtree by default in gui
-
-let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1 " alternate tab line
 
 set statusline+=%#warningmsg#
-set statusline+=%{SyntasticStatuslineFlag()}
 set statusline+=%*
-let g:syntastic_always_populate_loc_list = 1
-let g:syntastic_auto_loc_list = 1
-let g:syntastic_check_on_open = 1
-let g:syntastic_check_on_wq = 0
 let g:indentLine_enabled = 0
-
-
-" alternate airline .. for SF Mono font
-if !exists('g:airline_symbols')
-	let g:airline_symbols = {}
-endif
-
-let g:airline_powerline_fonts = 0
-let g:airline_symbols.paste = 'ρ'
-let g:airline_symbols.whitespace = 'Ξ'
-
-if g:airline_powerline_fonts == 1
-    let g:airline_left_sep = ''
-    let g:airline_left_alt_sep = ''
-    let g:airline_right_sep = ''
-    let g:airline_right_alt_sep = ''
-    let g:airline_symbols.branch = ''
-    let g:airline_symbols.readonly = ''
-    let g:airline_symbols.linenr = ''
-else
-    let g:airline_left_sep = ''
-    let g:airline_left_alt_sep = ''
-    let g:airline_right_sep = ''
-    let g:airline_right_alt_sep = ''
-    let g:airline_symbols.branch = '⎋'
-    let g:airline_symbols.readonly = '✖︎'
-    let g:airline_symbols.linenr = '␤'
-end
