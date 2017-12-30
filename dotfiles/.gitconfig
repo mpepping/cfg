@@ -1,19 +1,19 @@
 [user]
-	name = Martijn Pepping
+	name  = Martijn Pepping
 	email = martijn.pepping@automiq.nl
 
 [github]
 	user = mpepping
 
 [color]
-	diff = auto
+	diff   = auto
 	status = auto
 	branch = auto
 	interactive = true
 
 [alias]
-	hist = log --graph --date=short
+	hist    = log --graph --date=short
 	histone = log --graph --decorate --abbrev-commit --all --pretty=oneline
 
 [core]
-	excludesfile = /Users/martijn/.gitignore_global
+	excludesfile = ~/.gitignore_global

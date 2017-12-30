@@ -1,8 +1,13 @@
 #!/usr/bin/env bash
 #
-# Setup dotfiles.
+# Setup env.
 
 debug=false
+
+if [ "$(uname)" != "Linux" ]; then
+  echo "Linux only"
+  exit 1
+fi
 
 if [ "$(whoami)" = "root" ];
   then
@@ -98,6 +103,7 @@ if [ ! -e $dircfg ];
   then
       curl -LsO ${giturl}
       tar zxf master.tar.gz
+      mkdir -p ~/bin && mv cfg-master/bin/* ~/bin/
       mv cfg-master/dotfiles "${deploy_dir}"
       rm master.tar.gz
   else

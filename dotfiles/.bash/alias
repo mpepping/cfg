@@ -1,10 +1,12 @@
-alias ls='ls -G'
+
+if command -v colordiff ; then
+  alias diff='colordiff'
+fi
+
+alias drcleanexited='docker ps -a | grep Exit | cut -d " " -f 1 | xargs docker rm'
+alias inetdns='dig myip.opendns.com @Resolver1.opendns.com +short'
+alias inetip='curl -4 -s "http://icanhazip.com"'
 alias l='ls -l'
 alias ll='ls -la'
 alias lll='ls -lart'
-alias inetdns='dig myip.opendns.com @Resolver1.opendns.com +short'
-alias inetip='curl -4 -s "http://icanhazip.com"'
-alias unquar='xattr -d com.apple.quarantine'
-alias sshuttle='/Users/martijn/Repos/github/sshuttle/sshuttle -r shell 0/0'
-alias rubyhttp="ruby -run -e httpd -- -p 8000 ."
-alias drcleanexited='docker ps -a | grep Exit | cut -d " " -f 1 | xargs docker rm'
+alias ls='ls -G'
