@@ -1,4 +1,5 @@
 #!/usr/bin/env bash
+# shellcheck disable=SC2010
 #
 # Setup env.
 
@@ -61,7 +62,7 @@ deploy_assets() {
             if [ "$ha" = "$ca" ];
               # asset is exactly the same
               then
-                if [ -h $home/$asset ];
+                if [ -h "$home/$asset" ];
                   #asset is exactly the same and as link, all good
                   then echo "I [ignore] $home/$asset";
                   else
@@ -69,11 +70,11 @@ deploy_assets() {
                     echo "L [re-link] $home/$asset";
                     if [ $debug = false ];
                       then
-                        mv $home/$asset $backup_dir/$asset;
-                        ln -s $dircfg/$asset $home/$asset;
+                        mv "$home/$asset" "$backup_dir/$asset";
+                        ln -s "$dircfg/$asset" "$home/$asset";
                       else
-                        echo mv $home/$asset $backup_dir/$asset;
-                        echo ln -s $dircfg/$asset $home/$asset;
+                        echo mv "$home/$asset" "$backup_dir/$asset";
+                        echo ln -s "$dircfg/$asset" "$home/$asset";
                     fi
                 fi
               else
@@ -81,11 +82,11 @@ deploy_assets() {
                 echo "C [conflict] $home/$asset";
                 if [ $debug = false ];
                   then
-                    mv $home/$asset $backup_dir/$asset;
-                    ln -s $dircfg/$asset $home/$asset;
+                    mv "$home/$asset" "$backup_dir/$asset";
+                    ln -s "$dircfg/$asset" "$home/$asset";
                   else
-                    echo mv $home/$asset $backup_dir/$asset;
-                    echo ln -s $dircfg/$asset $home/$asset;
+                    echo mv "$home/$asset" "$backup_dir/$asset";
+                    echo ln -s "$dircfg/$asset" "$home/$asset";
                 fi
             fi
         fi
@@ -94,8 +95,8 @@ deploy_assets() {
 }
 
 # create backupdir, if non existing
-if [ ! -e $backup_dir ];
-  then mkdir -p $backup_dir;
+if [ ! -e "$backup_dir" ];
+  then mkdir -p "$backup_dir";
 fi
 
 # deploy src is non existing
@@ -110,5 +111,5 @@ if [ ! -e $dircfg ];
     echo "Config already deployed in $dircfg"
 fi
 
-assets=$(ls -A1 $dircfg | egrep -v $ignore | xargs);
+assets=$(ls -A1 "$dircfg" | grep -E -v "$ignore" | xargs);
 deploy_assets

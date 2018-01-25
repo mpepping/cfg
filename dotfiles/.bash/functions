@@ -1,5 +1,5 @@
 
 # powerline-shell
 function _update_ps1() {
-    PS1="$(~/bin/powerline-go -error $?)"
+		PS1="$(~/bin/powerline-go -modules venv,docker,ssh,host,cwd,perms,git,hg,jobs,exit,root -cwd-max-depth 2 -error $?)"
 }
