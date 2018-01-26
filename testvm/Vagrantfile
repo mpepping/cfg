@@ -18,6 +18,6 @@ Vagrant.configure("2") do |config|
   # documentation for more information about their specific syntax and use.
   config.vm.provision "shell", inline: <<-SHELL
     yum install vim-enhanced git -y
-    curl -Lks https://raw.githubusercontent.com/mpepping/cfg/master/deploy.sh | bash
+    sudo -u vagrant bash -c 'curl -Lks https://raw.githubusercontent.com/mpepping/cfg/master/deploy.sh | bash'
   SHELL
 end
