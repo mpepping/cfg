@@ -121,10 +121,9 @@ noremap <LeftRelease> "+y<LeftRelease>
 " I don't like ex mode
 "nnoremap Q <nop>
 
-" Toggle NERDtree
-"nnoremap <leader>d :NERDTreeToggle<CR>
-"nnoremap <leader>f :NERDTreeFind<CR>
-
+" tab navigation
+nnoremap H gT
+nnoremap L gt
 
 " =========
 " NETRW CFG
@@ -196,7 +195,7 @@ augroup END
 " PLUGINS
 " =======
 
-
 set statusline+=%#warningmsg#
 set statusline+=%*
 let g:indentLine_enabled = 0
+
