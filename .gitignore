@@ -1,6 +1,6 @@
-.DS_Store
 *.swp
-.netrwhist
-dotfiles/.vim/bundle/vim-indexed-search
+.DS_Store
 .idea
+.netrwhist
 .vagrant
+dotfiles/.vim/bundle/vim-indexed-search
