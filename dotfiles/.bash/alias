@@ -1,6 +1,7 @@
 #!/bin/bash
  
-if command -v colordiff ; then
+if command -v colordiff >/dev/null 2>&1
+  then
   alias diff='colordiff'
 fi
 
@@ -11,12 +12,13 @@ alias ll='ls -la'
 alias lll='ls -lart'
 alias ls='ls -G'
 
-if command -v git
+if command -v git >/dev/null 2>&1 
   then
   . ~/.bash/app/git
 fi
 
-if command -v docker
+if command -v docker >/dev/null 2>&1 
   then
   . ~/.bash/app/docker
 fi
+
