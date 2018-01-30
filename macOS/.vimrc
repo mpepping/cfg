@@ -14,8 +14,8 @@
 " LOOK & FEEL
 " ===========
 
-"color heroku-terminal
 color molokai
+"color heroku-terminal
 
 set background=dark
 set backspace=2
@@ -40,8 +40,10 @@ set encoding=utf8              " set utf8 as standard encoding and en_US as the 
 set fileformats=unix,dos       " use Unix as the standard file type
 set foldmethod=marker          " folding {{{ }}}
 set linebreak                  " line break
-set smartindent                " smart indent
 set textwidth=500              " text width
+
+set autoindent                 " indent per filetype
+filetype plugin indent on      " https://www.reddit.com/r/vim/wiki/vimrctips#wiki_do_not_use_smartindent
 
 set tabstop=4                  " the width of a hard tab, measured in spaces
 set shiftwidth=2               " set shiftwidth, e.g. tab inserts two spaces
@@ -51,10 +53,14 @@ set expandtab                  " spaces instead of hard tabs
 let g:markdown_fenced_languages = ['css', 'erb=eruby', 'javascript', 'js=javascript', 'json=javascript', 'ruby', 'sass', 'xml', 'html', 'python', 'bash=sh']
 
 " Jenkinsfile == groovy
-autocmd BufNewFile,BufRead Jenkinsfile setf groovy
+augroup set_filetypes
+  autocmd!
+  autocmd BufNewFile,BufRead Jenkinsfile setf groovy
+augroup END
 
 " Spell check filetype or buffer
 augroup spellcheck_documentation
+  autocmd!
   autocmd BufNewFile,BufRead *.md setlocal spell
   autocmd BufNewFile,BufRead *.rdoc setlocal spell
   autocmd BufNewFile,BufRead *.txt setlocal spell
@@ -103,10 +109,10 @@ noremap <LeftRelease> "+y<LeftRelease>
 " ======
 
 if has("gui_running") && has("mac")
-  set guioptions=-t            "no tearoff menu
-  set guioptions-=T            "hide menubar
-  set guioptions+=e            "use gui tabs
-  set guitablabel=%M\ %t
+"  set guioptions=-t            "no tearoff menu
+"  set guioptions-=T            "hide menubar
+"  set guioptions+=e            "use gui tabs
+"  set guitablabel=%M\ %t
   set visualbell               "no bell
   set lines=999 columns=999    "max window size
 
@@ -130,7 +136,7 @@ if has("gui_running") && has("mac")
   nnoremap <leader>7 :colorscheme blue<cr>
   nnoremap <leader>8 :colorscheme default<cr>
 
-  set guifont=Menlo\ for\ PowerLine:h12
+  set guifont=Menlo\ for\ PowerLine:h14
   "set guifont=Menlo\ Regular:h14
 endif
 
