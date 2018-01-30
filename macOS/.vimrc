@@ -24,7 +24,7 @@ set ignorecase
 set matchtime=2                " how many tenths of a second to blink when matching brackets
 set noshowmode                 " disable the -- INSERT -- message, since we use Airline
 set number                     " set relativenumber is <leader>N
-set paste
+"set paste
 set ruler                      " always show current position
 set showmatch                  " show matching brackets when text indicator is over them
 set smartcase
@@ -89,7 +89,7 @@ nnoremap <leader>N :set relativenumber!<CR>
 nnoremap <leader>m :IndentLinesToggle<CR>
 
 " Toggle set paste with \+p
-nnoremap <leader>p :set paste<CR>
+nnoremap <leader>p :setlocal paste!<CR>
 
 " Toggle Syntastic
 nnoremap <leader>t :SyntasticToggleMode<CR>
@@ -100,8 +100,8 @@ nnoremap <leader>W :%s/\s\+$//<cr>:let @/=''<CR>
 " Select pasted text
 noremap <leader>v V`]
 
-" Copy on mouse-select
-noremap <LeftRelease> "+y<LeftRelease>
+" Copy on mouse-select - disabled in favour of pastebot
+"noremap <LeftRelease> "+y<LeftRelease>
 
 
 " ======
