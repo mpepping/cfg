@@ -5,7 +5,7 @@
 "   0. VUNDLE SETUP
 "   1. FILE HANDLING
 "   2. LOOK & FEEL
-"   3. FUNCTIONS
+"   3. MAPPINGS
 "   4. NETRW CFG
 "   5. MACVIM
 "   6. GVIM/WIN32
@@ -13,76 +13,64 @@
 "   8. PLUGINS
 
 
-" ============
-" VUNDLE SETUP
-" ============
+"" ============
+"" VUNDLE SETUP
+"" ============
+"
+"" temp. unset for Vundle
+""set nocompatible
+"filetype off
+"
+"set rtp+=~/.vim/bundle/vundle
+"call vundle#begin()
+"
+"Plugin 'gmarik/vundle'
+"
+"Plugin 'bling/vim-airline'
+"Plugin 'fatih/vim-go'
+"Plugin 'godlygeek/tabular'
+"Plugin 'henrik/vim-indexed-search'
+"Plugin 'mbbill/undotree'
+"Plugin 'mhinz/vim-signify'
+"Plugin 'mzlogin/vim-markdown-toc'
+"Plugin 'rodjek/vim-puppet'
+"Plugin 'scrooloose/nerdcommenter'
+"Plugin 'scrooloose/syntastic'
+"Plugin 'tpope/vim-fugitive'
+"Plugin 'tpope/vim-sensible'
+"Plugin 'tpope/vim-surround'
+"Plugin 'tpope/vim-vinegar'
+"Plugin 'vim-ruby/vim-ruby'
+"Plugin 'yggdroot/indentLine'
+"
+"call vundle#end()
+"
+"
+"" =============
+"" FILE HANDLING
+"" =============
+"
+"filetype plugin indent on
+"
+"if (has("syntax") !=0)
+"    syntax on
+"endif
 
-" temp. unset for Vundle
-set nocompatible
-filetype off
-
-set rtp+=~/.vim/bundle/vundle
-call vundle#begin()
-
-Plugin 'gmarik/vundle'
-
-"Plugin 'rizzatti/dash.vim'
-Plugin 'tpope/vim-sensible'
-Plugin 'bling/vim-airline'
-Plugin 'fatih/vim-go'
-Plugin 'godlygeek/tabular'
-Plugin 'henrik/vim-indexed-search'
-Plugin 'mbbill/undotree'
-Plugin 'mhinz/vim-signify'
-Plugin 'mzlogin/vim-markdown-toc'
-Plugin 'rodjek/vim-puppet'
-Plugin 'scrooloose/nerdcommenter'
-Plugin 'scrooloose/syntastic'
-Plugin 'tpope/vim-fugitive'
-Plugin 'tpope/vim-surround'
-Plugin 'tpope/vim-vinegar'
-Plugin 'vim-ruby/vim-ruby'
-Plugin 'yggdroot/indentLine'
-
-call vundle#end()
+set expandtab               " soft tabs
+set tabstop=2               " set tabstops
+set shiftwidth=2            " set shiftwidth
+set softtabstop=2           " delete this many spaces upon deleting soft tab
+set foldmethod=marker       " folding {{{ }}}
+set encoding=utf8           " set utf8 as standard encoding and en_US as the standard language
+set fileformats=unix,dos    " use Unix as the standard file type
+set linebreak               " line break
+set textwidth=500           " text width
+set smartindent             " smart indent
 
 
-" =============
-" FILE HANDLING
-" =============
-
-filetype plugin indent on
-
-if (has("syntax") !=0)
-    syntax on
-endif
-
-set expandtab         " soft tabs
-set tabstop=2         " set tabstops
-set shiftwidth=2      " set shiftwidth
-set softtabstop=2     " delete this many spaces upon deleting soft tab
-set smarttab          " seems smart ;-)
-set fdm=marker        " folding {{{ }}}
-set encoding=utf8     " set utf8 as standard encoding and en_US as the standard language
-set ffs=unix,dos,mac  " use Unix as the standard file type
-
-set lbr               " line break
-set tw=500            " text width
-
-set ai                " auto indent
-set si                " smart indent
-set wrap              " wrap lines
-
-"autocmd BufNewFile,BufRead *.pp set filetype=ruby
-
-" Markdown inline syntax highlighting
-" ```ruby
-" puts foo
-" ````
-au BufNewFile,BufReadPost *.md set filetype=markdown
 let g:markdown_fenced_languages = ['css', 'erb=eruby', 'javascript', 'js=javascript', 'json=javascript', 'ruby', 'sass', 'xml', 'html']
 
-" Groovy
+" Set groovy for Jenkinsfile
 au BufNewFile,BufRead Jenkinsfile setf groovy
 
 " ===========
@@ -91,35 +79,29 @@ au BufNewFile,BufRead Jenkinsfile setf groovy
 
 "color heroku-terminal
 color molokai
-set title           " set terminal title
-set bg=dark
+set title             " set terminal title
+set background=dark
 set backspace=2
-set nocp
-set ruler
-set incsearch
 set smartcase
 set hlsearch
 set ignorecase
-"set relativenumber
-set number
+set number            "set relativenumber is <leader>N
 set paste
 set noshowmode        " disable the -- INSERT -- message, since we use Airline
 set ruler             " always show current position
 set showmatch         " show matching brackets when text indicator is over them
-set mat=2             " how many tenths of a second to blink when matching brackets
-set laststatus=2      " always show the status line
-set magic             " for regex
-"set list              " for whitespace, tabs and line-endings
+set matchtime=2             " how many tenths of a second to blink when matching brackets
+"set magic             " for regex
 
 set complete=.,w,b,u,t,i,kspell "added kspell, to add from dict when spell is set.
 
 
 
-" =========
-" FUNCTIONS
-" =========
+" ========
+" MAPPINGS
+" ========
 
-" just don't forget sudo 
+" Just don't forget sudo 
 noremap  W :w !sudo tee %<CR><CR>
 noremap  Q :w !sudo tee %<CR><CR>:q!<CR>
 
@@ -152,22 +134,12 @@ nnoremap <silent>n nzz
 nnoremap <silent>N Nzz
 nnoremap <silent>* *zz
 
-
-" Use <C-L> to clear the highlighting of :set hlsearch.
-if maparg('<C-L>', 'n') ==# ''
-  nnoremap <silent> <C-L> :nohlsearch<CR><C-L>
-endif
-
 " Copy on mouse-select
 noremap <LeftRelease> "+y<LeftRelease>
 
-" I don't like ex mode
-"nnoremap Q <nop>
-
-" Toggle NERDtree
-"nnoremap <leader>d :NERDTreeToggle<CR>
-"nnoremap <leader>f :NERDTreeFind<CR>
-
+" Tab navigation
+nnoremap H gT
+nnoremap L gt
 
 " =========
 " NETRW CFG
@@ -183,7 +155,6 @@ let g:netrw_list_hide.='\(^\|\s\s\)\zs\.\S\+'
 let g:netrw_winsize = 25
 
 nnoremap <leader>d :Vexplore<CR>
-
 
 " Toggle Vexplore with CTRL+E
 function! ToggleVExplorer()
@@ -221,19 +192,18 @@ if has("gui_running")
   set guioptions-=T           "hide menubar
   set guioptions+=e           "use gui tabs
   set guitablabel=%M\ %t
-  set vb                      "no bell
-  "set lines=48 columns=160    "sane window size
+  set visualbell              "no bell
   set lines=999 columns=999   "max window size
 
-  "color molokai
-  "color atom-dark
   color blackboard
+  "color atom-dark
   "color codetool
   "color darkblue
   "color desert
   "color dracula
   "color evening
   "color heroku
+  "color molokai
   "color onedark
 
   nnoremap <leader>1 :colorscheme heroku<cr>
@@ -247,8 +217,6 @@ if has("gui_running")
 
   set guifont=Menlo\ for\ PowerLine:h12
   "set guifont=Menlo\ Regular:h14
-  "set guifont=Consolas:h16
-  set t_Co=256
 
 endif
 
@@ -261,7 +229,6 @@ if has("win32") || has("win16")
   set guifont=Lucida_Console:h10:cANSI
 
   " Set options and add mapping such that Vim behaves a lot like MS-Windows
-  " Stolen from: source $VIMRUNTIME\mswin.vim
 
   set directory=.,$TEMP
   set lines=48 columns=120
@@ -339,12 +306,8 @@ augroup END
 " PLUGINS
 " =======
 
-"let g:ctrlp_open_new_file = 't'             " open files in a new tab
-"let g:NERDTreeWinPos = "right"              " show filebrowser on the right
-"let g:nerdtree_tabs_open_on_gui_startup = 0 " no nerdtree by default in gui
-
 let g:airline_powerline_fonts = 1
-let g:airline#extensions#tabline#enabled = 1 " alternate tab line
+let g:airline#extensions#tabline#enabled = 1
 
 set statusline+=%#warningmsg#
 set statusline+=%{SyntasticStatuslineFlag()}
@@ -355,30 +318,3 @@ let g:syntastic_check_on_open = 1
 let g:syntastic_check_on_wq = 0
 let g:indentLine_enabled = 0
 
-
-" alternate airline .. for SF Mono font
-if !exists('g:airline_symbols')
-	let g:airline_symbols = {}
-endif
-
-let g:airline_powerline_fonts = 0
-let g:airline_symbols.paste = 'ρ'
-let g:airline_symbols.whitespace = 'Ξ'
-
-if g:airline_powerline_fonts == 1
-    let g:airline_left_sep = ''
-    let g:airline_left_alt_sep = ''
-    let g:airline_right_sep = ''
-    let g:airline_right_alt_sep = ''
-    let g:airline_symbols.branch = ''
-    let g:airline_symbols.readonly = ''
-    let g:airline_symbols.linenr = ''
-else
-    let g:airline_left_sep = ''
-    let g:airline_left_alt_sep = ''
-    let g:airline_right_sep = ''
-    let g:airline_right_alt_sep = ''
-    let g:airline_symbols.branch = '⎋'
-    let g:airline_symbols.readonly = '✖︎'
-    let g:airline_symbols.linenr = '␤'
-end
