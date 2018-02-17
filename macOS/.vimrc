@@ -14,8 +14,16 @@
 " LOOK & FEEL
 " ===========
 
-color molokai
-"color heroku-terminal
+color heroku-terminal
+
+nnoremap <leader>1 :colorscheme heroku-terminal<cr>
+nnoremap <leader>2 :colorscheme dracula<cr>
+nnoremap <leader>3 :colorscheme onedark<cr>
+nnoremap <leader>4 :colorscheme blackboard<cr>
+nnoremap <leader>5 :colorscheme molokai<cr>
+nnoremap <leader>6 :colorscheme atom-dark<cr>
+nnoremap <leader>7 :colorscheme blue<cr>
+nnoremap <leader>8 :colorscheme default<cr>
 
 set background=dark
 set backspace=2

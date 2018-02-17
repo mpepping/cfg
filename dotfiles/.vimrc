@@ -52,8 +52,8 @@ let g:markdown_fenced_languages = ['css', 'erb=eruby', 'javascript', 'js=javascr
 " LOOK & FEEL
 " ===========
 
-"color heroku-terminal
-color molokai
+color heroku-terminal
+"color molokai
 set title           " set terminal title
 set bg=dark
 set backspace=2
