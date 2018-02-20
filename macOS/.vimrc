@@ -99,6 +99,9 @@ nnoremap <leader>m :IndentLinesToggle<CR>
 " Toggle set paste with \+p
 nnoremap <leader>p :setlocal paste!<CR>
 
+" Toggle RainbowLevels with \+r
+map <leader>r :RainbowLevelsToggle<cr>
+
 " Toggle Syntastic
 nnoremap <leader>t :SyntasticToggleMode<CR>
 

@@ -48,6 +48,7 @@ package https://github.com/tpope/vim-sensible.git &
 package https://github.com/tpope/vim-surround.git &
 package https://github.com/tpope/vim-vinegar.git &
 package https://github.com/yggdroot/indentLine.git &
+package https://github.com/thiagoalessio/rainbow_levels.vim.git &
 wait
 ) &
 (
