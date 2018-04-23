@@ -147,7 +147,8 @@ if has("gui_running") && has("mac")
   nnoremap <leader>7 :colorscheme blue<cr>
   nnoremap <leader>8 :colorscheme default<cr>
 
-  set guifont=Menlo\ for\ PowerLine:h14
+  set guifont=SF\ Mono\ Regular\ Nerd\ Font\ Complete:h14
+  "set guifont=Menlo\ for\ PowerLine:h14
   "set guifont=Menlo\ Regular:h14
 endif
 
