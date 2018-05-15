@@ -127,7 +127,8 @@ if has("gui_running") && has("mac")
   set visualbell               "no bell
   set lines=999 columns=999    "max window size
 
-  color blackboard
+  color lucariox
+  "color blackboard
   "color atom-dark
   "color codetool
   "color darkblue
@@ -146,6 +147,7 @@ if has("gui_running") && has("mac")
   nnoremap <leader>6 :colorscheme atom-dark<cr>
   nnoremap <leader>7 :colorscheme blue<cr>
   nnoremap <leader>8 :colorscheme default<cr>
+  nnoremap <leader>9 :colorscheme lucariox<cr>
 
   set guifont=SF\ Mono\ Regular\ Nerd\ Font\ Complete:h14
   "set guifont=Menlo\ for\ PowerLine:h14

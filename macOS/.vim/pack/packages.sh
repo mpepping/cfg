@@ -60,5 +60,10 @@ package https://github.com/rodjek/vim-puppet.git &
 package https://github.com/vim-ruby/vim-ruby.git &
 wait
 ) &
+(
+set_group colors
+package https://github.com/miconda/lucariox.vim.git &
+wait
+) &
 wait
 

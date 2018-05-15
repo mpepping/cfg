@@ -1,0 +1,3 @@
+[submodule "macOS/.vim/pack/colors/start/lucariox.vim"]
+	path = macOS/.vim/pack/colors/start/lucariox.vim
+	url = https://github.com/miconda/lucariox.vim.git
