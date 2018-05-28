@@ -61,7 +61,7 @@ package https://github.com/vim-ruby/vim-ruby.git &
 wait
 ) &
 (
-set_group colors
+set_group themes
 package https://github.com/miconda/lucariox.vim.git &
 wait
 ) &

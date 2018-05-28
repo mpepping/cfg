@@ -6,4 +6,4 @@
 dotfiles/.vim/bundle/vim-indexed-search
 macOS/.vim/pack/config
 macOS/.vim/pack/code
-macOS/.vim/pack/colors
+macOS/.vim/pack/themes
