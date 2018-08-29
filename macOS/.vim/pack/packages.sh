@@ -50,6 +50,7 @@ package https://github.com/tpope/vim-vinegar.git &
 package https://github.com/yggdroot/indentLine.git &
 package https://github.com/thiagoalessio/rainbow_levels.vim.git &
 package https://github.com/rhysd/vim-gfm-syntax &
+package https://github.com/lifepillar/vim-mucomplete &
 wait
 ) &
 (
