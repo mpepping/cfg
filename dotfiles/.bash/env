@@ -13,7 +13,7 @@ export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 # Set terminal tab title
 export PROMPT_COMMAND="echo -ne '\033]0;${HOSTNAME:0:3}\007';$PROMPT_COMMAND"
 
-# avoid ruby UTF8/ASCII errors
+# Avoid ruby UTF8/ASCII errors
 export LANG="en_US.UTF-8"
 export LC_ALL="en_US.UTF-8"
 export LC_CTYPE=en_US.UTF-8
@@ -26,7 +26,7 @@ else
   export EDITOR='vi'
 fi
 
-# shell in vi mode
+# Shell in vi mode
 set -o vi
 bind -m vi-insert "\\C-l":clear-screen
 

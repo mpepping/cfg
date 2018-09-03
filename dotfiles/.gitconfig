@@ -1,18 +1,18 @@
 [user]
-  name  = Martijn Pepping
+  name = Martijn Pepping
   email = martijn.pepping@automiq.nl
 
 [github]
   user = mpepping
 
 [color]
-  diff   = auto
+  diff = auto
   status = auto
   branch = auto
   interactive = true
 
 [alias]
-  hist    = log --graph --date=short
+  hist = log --graph --date=short
   histone = log --graph --decorate --abbrev-commit --all --pretty=oneline
   llog = !git log --pretty=format:'%Cgreen(%ci)%Creset %Cred%h%Creset %<(20,trunc)%C(blue)%an%Creset  %s %C(yellow)%d%Creset ' --abbrev-commit
   # all commits that aren't merges on all branches
