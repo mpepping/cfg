@@ -7,10 +7,10 @@ fi
 
 alias inetdns='dig myip.opendns.com @Resolver1.opendns.com +short'
 alias inetip='curl -4 -s "http://icanhazip.com"'
+alias ls='ls --color'
 alias l='ls -l'
 alias ll='ls -la'
 alias lll='ls -lart'
-alias ls='ls -G'
 
 if command -v git >/dev/null 2>&1 
   then
