@@ -1,5 +1,4 @@
-cfg
-===
+# cfg
 
 Quick && dirty environment setup for Linux.
 

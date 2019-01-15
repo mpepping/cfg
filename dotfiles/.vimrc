@@ -1,5 +1,3 @@
-
-
 " ============
 " VUNDLE SETUP
 " ============
@@ -153,7 +151,6 @@ endfunction
 map <silent> <C-E> :call ToggleVExplorer()<CR>
 
 set autochdir " Change directory to the current buffer when opening files
-
 
 
 " ============
