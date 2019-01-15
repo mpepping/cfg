@@ -64,6 +64,7 @@ wait
 (
 set_group themes
 package https://github.com/miconda/lucariox.vim.git &
+package https://github.com/haishanh/night-owl.vim &
 wait
 ) &
 wait
