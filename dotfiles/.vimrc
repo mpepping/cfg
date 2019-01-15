@@ -6,12 +6,11 @@
 set nocompatible
 filetype off
 
-set rtp+=~/.vim/bundle/vundle
-call vundle#begin()
-
-Plugin 'gmarik/vundle'
-
-call vundle#end()
+" Optionally Vundle
+"set rtp+=~/.vim/bundle/vundle
+"call vundle#begin()
+"Plugin 'gmarik/vundle'
+"call vundle#end()
 
 
 
@@ -29,7 +28,7 @@ set tabstop=2         " set tabstops
 set shiftwidth=2      " set shiftwidth
 set softtabstop=2     " delete this many spaces upon deleting soft tab
 set smarttab          " seems smart ;-)
-set fdm=marker        " folding {{{ }}}
+"set fdm=marker        " folding {{{ }}}
 set encoding=utf8     " set utf8 as standard encoding and en_US as the standard language
 set ffs=unix,dos,mac  " use Unix as the standard file type
 
@@ -150,8 +149,7 @@ function! ToggleVExplorer()
 endfunction
 map <silent> <C-E> :call ToggleVExplorer()<CR>
 
-set autochdir " Change directory to the current buffer when opening files
-
+"set autochdir " Change directory to the current buffer when opening files
 
 " ============
 " SPELL & DICT
