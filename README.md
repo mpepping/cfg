@@ -13,3 +13,4 @@ curl -Lks http://bit.do/deploycfg | bash
 ```
 
 Sets config for shell, git, vim, tmux a.o.
+
