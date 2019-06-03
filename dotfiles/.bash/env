@@ -11,7 +11,7 @@ shopt -s histappend                      # append to history
 export PROMPT_COMMAND="history -a; history -c; history -r; $PROMPT_COMMAND"
 
 # Set terminal tab title
-export PROMPT_COMMAND="echo -ne '\033]0;${HOSTNAME:0:3}\007';$PROMPT_COMMAND"
+export PROMPT_COMMAND="echo -ne '\033]0;${HOSTNAME:0:10}\007';$PROMPT_COMMAND"
 
 # Avoid ruby UTF8/ASCII errors
 export LANG="en_US.UTF-8"
