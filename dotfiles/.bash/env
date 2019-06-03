@@ -26,6 +26,11 @@ else
   export EDITOR='vi'
 fi
 
+# Set a decent term env
+if [ "$TERM" == "vt100" ]; then
+  export TERM=xterm-256color
+fi
+
 # Shell in vi mode
 set -o vi
 bind -m vi-insert "\\C-l":clear-screen
