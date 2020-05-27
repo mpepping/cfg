@@ -11,6 +11,7 @@ alias ls='ls --color'
 alias l='ls -l'
 alias ll='ls -la'
 alias lll='ls -lart'
+alias k='kubectl'
 
 if command -v git >/dev/null 2>&1 
   then
