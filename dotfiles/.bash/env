@@ -1,6 +1,6 @@
 #!/bin/bash
 
-export PATH="$HOME/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
+export PATH="$HOME/.local/bin:$HOME/bin:/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin"
 
 export HISTCONTROL=ignoredups:erasedups  # no duplicate entries
 export HISTSIZE=1000                     # keep 1.000
@@ -32,6 +32,6 @@ if [ "$TERM" == "vt100" ]; then
 fi
 
 # Shell in vi mode
-set -o vi
-bind -m vi-insert "\\C-l":clear-screen
+#set -o vi
+#bind -m vi-insert "\\C-l":clear-screen
 
